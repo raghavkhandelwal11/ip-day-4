@@ -6,7 +6,7 @@ const parser = bodyparser.json();
 const app = express();
 
 
-
+const port = process.env.PORT || 6500;
 
 
 const users = [];
@@ -76,7 +76,7 @@ app.get("/login/success", async (req, res) => {
 })
 
 
-app.listen(6500, () => {
+app.listen(port, () => {
     console.log(" Server listening on port 6500");
 });
 

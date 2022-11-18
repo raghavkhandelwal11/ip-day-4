@@ -54,7 +54,6 @@ app.get("/register", parser,  async (req, res) => {
 
     users.push(jsonObj);
 
-    console.log(jsonObj);
 
     res.status(201).render("registered");
 })
@@ -73,6 +72,20 @@ app.get("/login/success", async (req, res) => {
     else {
         res.send("wrong credentials");
     }
+});
+
+
+app.post("/sendtoken", parser, (req, res) => {
+    let token = req.body.jwt;
+    
+    for(let i = 0; i < users.length; i++) {
+        if(token == users[i].password) {
+            res.json(users[i]);
+        } else if(i == users.length) {
+            res.send("token expired")
+        }
+    } 
+
 })
 
 
